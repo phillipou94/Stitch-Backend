@@ -1,0 +1,23 @@
+{
+  "name": "Stitch",
+  "version": "1.0.0",
+  "description": "\"mobile news aggregator that lets you highlight and save news you read\"",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdrozzy/Stitch"
+  },
+  "author": "Phillip Ou and Sam Drozdov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdrozzy/Stitch/issues"
+  },
+  "homepage": "https://github.com/sdrozzy/Stitch",
+  "dependencies": {
+    "express": "^4.9.6",
+    "logfmt": "^1.2.0"
+  }
+}
