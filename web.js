@@ -30,7 +30,7 @@ app.listen(port, function() {
 //get request
 app.get('/highlights',function(req,res){
 	var collection = db.collection("highlights")
-	res.send('Checking for highlights!');
+
 	collection.find({},{}).toArray(function(e,results){
 		if(e) res.status(500).send()
 			res.send(results)
