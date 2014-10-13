@@ -48,3 +48,11 @@ app.post('/highlights', function(req,rest){
 	})
 })
 
+app.delete('/highlights', function(req,rest){
+	var collection = db.collection("highlights")
+	collection.delete(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+})
+
