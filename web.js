@@ -1,11 +1,11 @@
 // web.js
 var express = require("express");
 var logfmt = require("logfmt");
-var mongo = require('mongodb');
-var mongoskin = require('mongoskin');
-var bodyParser = require('body-parser');
+var mongo = require('mongodb'); //npm install
+var mongoskin = require('mongoskin'); //npm install
+var bodyParser = require('body-parser'); //npm install
 var app = express();
-var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mdb'
+var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mdb' //needed to add MONGOHQ to Heroku
 var db = mongoskin.db(mongoURL, {safe:true})
 
 app.use(bodyParser())
@@ -32,6 +32,7 @@ app.get('/highlights',function(req,res){
 	var collection = db.collection("highlights")
 
 	collection.find({},{}).toArray(function(e,results){
+		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
 	})
@@ -46,3 +47,4 @@ app.post('/highlights', function(req,rest){
 			res.send(results)
 	})
 })
+
