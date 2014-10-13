@@ -1,12 +1,19 @@
 // web.js
 var express = require("express");
 var logfmt = require("logfmt");
+var mongo = require('mongodb');
+var mongoskin = require('mongoskin');
 var app = express();
+
+
+var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mdb'
+var db = mongoskin.db(mongoURL, {safe:true})
 
 app.use(logfmt.requestLogger());
 
 app.get('/', function(req, res) {
   res.send('Hello World!');
+
 });
 
 var port = Number(process.env.PORT || 5000);
