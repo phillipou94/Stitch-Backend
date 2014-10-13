@@ -10,8 +10,9 @@ var app = express();
 var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mdb'
 var db = mongoskin.db(mongoURL, {safe:true})
 
+app.use(bodyParser())
 
-app.param('collectionName' function(req,res,next,collectionName){
+app.param('collectionName', function(req,res,next,collectionName){
 	req.collection = db.collection(collectionName)
 	return next()
 })
