@@ -1,31 +1,15 @@
-var express = require('express')
-var mongoskin = require('mongoskin')
-var bodyParser = require('body-parser')
+// web.js
+var express = require("express");
+var logfmt = require("logfmt");
+var app = express();
 
-var app = express()
-app.use(bodyParser())
+app.use(logfmt.requestLogger());
 
-var db = mongoskin.db('http://stitch-backend.herokuapp.com/', {safe:true})
+app.get('/', function(req, res) {
+  res.send('Hello World!');
+});
 
-//get request
-app.get('/highlights',function(req,res){
-	var collection = db.collection("highlights")
-
-	collection.find({}).toArray(function(e,results){
-		if(e) res.status(500).send()
-			res.send(results)
-	})
-})
-//post request
-
-app.post('/highlights', function(req,rest){
-	var collection = db.collection("chat")
-
-	collection.insert(req.body,{},function(e,results){
-		if (e) res.status(500).send()
-			res.send(results)
-	})
-})
-
-
-app.listen(3000) //number for the server
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
