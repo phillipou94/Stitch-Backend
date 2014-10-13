@@ -1,11 +1,11 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'mongodb', 'save--' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'bodyParser', '--save' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 warn package.json Stitch@1.0.0 No README data
 5 verbose readDependencies using package.json deps
-6 verbose cache add [ 'mongodb', null ]
-7 verbose cache add name=undefined spec="mongodb" args=["mongodb",null]
+6 verbose cache add [ 'bodyParser', null ]
+7 verbose cache add name=undefined spec="bodyParser" args=["bodyParser",null]
 8 verbose parsed url { protocol: null,
 8 verbose parsed url   slashes: null,
 8 verbose parsed url   auth: null,
@@ -15,285 +15,71 @@
 8 verbose parsed url   hash: null,
 8 verbose parsed url   search: null,
 8 verbose parsed url   query: null,
-8 verbose parsed url   pathname: 'mongodb',
-8 verbose parsed url   path: 'mongodb',
-8 verbose parsed url   href: 'mongodb' }
-9 verbose cache add [ 'save--', null ]
-10 verbose cache add name=undefined spec="save--" args=["save--",null]
-11 verbose parsed url { protocol: null,
-11 verbose parsed url   slashes: null,
-11 verbose parsed url   auth: null,
-11 verbose parsed url   host: null,
-11 verbose parsed url   port: null,
-11 verbose parsed url   hostname: null,
-11 verbose parsed url   hash: null,
-11 verbose parsed url   search: null,
-11 verbose parsed url   query: null,
-11 verbose parsed url   pathname: 'save--',
-11 verbose parsed url   path: 'save--',
-11 verbose parsed url   href: 'save--' }
-12 silly lockFile 7f1c982e-mongodb mongodb
-13 verbose lock mongodb /Users/phillipou/.npm/7f1c982e-mongodb.lock
-14 silly lockFile 0ab90a81-save save--
-15 verbose lock save-- /Users/phillipou/.npm/0ab90a81-save.lock
-16 silly lockFile 7f1c982e-mongodb mongodb
-17 silly lockFile 7f1c982e-mongodb mongodb
-18 silly lockFile 0ab90a81-save save--
-19 silly lockFile 0ab90a81-save save--
-20 verbose addNamed [ 'mongodb', '' ]
-21 verbose addNamed [ null, '*' ]
-22 silly lockFile 886df635-mongodb mongodb@
-23 verbose lock mongodb@ /Users/phillipou/.npm/886df635-mongodb.lock
-24 verbose addNamed [ 'save--', '' ]
-25 verbose addNamed [ null, '*' ]
-26 silly lockFile d38a0e40-save save--@
-27 verbose lock save--@ /Users/phillipou/.npm/d38a0e40-save.lock
-28 silly addNameRange { name: 'mongodb', range: '*', hasData: false }
-29 silly addNameRange { name: 'save--', range: '*', hasData: false }
-30 verbose request where is /save--
-31 verbose request registry https://registry.npmjs.org/
-32 verbose request id 864dd0d97385527c
-33 verbose url raw /save--
-34 verbose url resolving [ 'https://registry.npmjs.org/', './save--' ]
-35 verbose url resolved https://registry.npmjs.org/save--
-36 verbose request where is https://registry.npmjs.org/save--
-37 info trying registry request attempt 1 at 18:05:19
-38 http GET https://registry.npmjs.org/save--
-39 verbose request where is /mongodb
-40 verbose request registry https://registry.npmjs.org/
-41 verbose url raw /mongodb
-42 verbose url resolving [ 'https://registry.npmjs.org/', './mongodb' ]
-43 verbose url resolved https://registry.npmjs.org/mongodb
-44 verbose request where is https://registry.npmjs.org/mongodb
-45 info trying registry request attempt 1 at 18:05:20
-46 verbose etag "9Q7DTCYRDDN7NN3U8G9OVZMQW"
-47 http GET https://registry.npmjs.org/mongodb
-48 http 404 https://registry.npmjs.org/save--
-49 verbose headers { date: 'Mon, 13 Oct 2014 01:05:20 GMT',
-49 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
-49 verbose headers   'content-type': 'application/json',
-49 verbose headers   'cache-control': 'max-age=0',
-49 verbose headers   'content-length': '52',
-49 verbose headers   'accept-ranges': 'bytes',
-49 verbose headers   via: '1.1 varnish',
-49 verbose headers   age: '0',
-49 verbose headers   'x-served-by': 'cache-lax1434-LAX',
-49 verbose headers   'x-cache': 'MISS',
-49 verbose headers   'x-cache-hits': '0',
-49 verbose headers   'x-timer': 'S1413162320.163256,VS0,VE320',
-49 verbose headers   'keep-alive': 'timeout=10, max=50',
-49 verbose headers   connection: 'Keep-Alive' }
-50 silly registry.get cb [ 404,
-50 silly registry.get   { date: 'Mon, 13 Oct 2014 01:05:20 GMT',
-50 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
-50 silly registry.get     'content-type': 'application/json',
-50 silly registry.get     'cache-control': 'max-age=0',
-50 silly registry.get     'content-length': '52',
-50 silly registry.get     'accept-ranges': 'bytes',
-50 silly registry.get     via: '1.1 varnish',
-50 silly registry.get     age: '0',
-50 silly registry.get     'x-served-by': 'cache-lax1434-LAX',
-50 silly registry.get     'x-cache': 'MISS',
-50 silly registry.get     'x-cache-hits': '0',
-50 silly registry.get     'x-timer': 'S1413162320.163256,VS0,VE320',
-50 silly registry.get     'keep-alive': 'timeout=10, max=50',
-50 silly registry.get     connection: 'Keep-Alive' } ]
-51 silly lockFile d38a0e40-save save--@
-52 silly lockFile d38a0e40-save save--@
-53 http 200 https://registry.npmjs.org/mongodb
-54 silly registry.get cb [ 200,
-54 silly registry.get   { date: 'Mon, 13 Oct 2014 01:05:20 GMT',
-54 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-54 silly registry.get     etag: '"6AFDDU1JZIBPZA17X6Y0N3PF0"',
-54 silly registry.get     'content-type': 'application/json',
-54 silly registry.get     'cache-control': 'max-age=60',
-54 silly registry.get     'content-length': '375652',
-54 silly registry.get     'accept-ranges': 'bytes',
-54 silly registry.get     via: '1.1 varnish',
-54 silly registry.get     age: '4507',
-54 silly registry.get     'x-served-by': 'cache-lax1421-LAX',
-54 silly registry.get     'x-cache': 'HIT',
-54 silly registry.get     'x-cache-hits': '1',
-54 silly registry.get     'x-timer': 'S1413162320.174431,VS0,VE308',
-54 silly registry.get     vary: 'Accept',
-54 silly registry.get     'keep-alive': 'timeout=10, max=50',
-54 silly registry.get     connection: 'Keep-Alive' } ]
-55 silly addNameRange number 2 { name: 'mongodb', range: '*', hasData: true }
-56 silly addNameRange versions [ 'mongodb',
-56 silly addNameRange   [ '0.9.4',
-56 silly addNameRange     '0.9.4-4',
-56 silly addNameRange     '0.9.3',
-56 silly addNameRange     '0.9.1',
-56 silly addNameRange     '0.9.2',
-56 silly addNameRange     '0.9.6-7',
-56 silly addNameRange     '0.9.6-8',
-56 silly addNameRange     '0.9.6-9',
-56 silly addNameRange     '0.9.6-10',
-56 silly addNameRange     '0.9.6-11',
-56 silly addNameRange     '0.9.6-12',
-56 silly addNameRange     '0.9.6-13',
-56 silly addNameRange     '0.9.6-14',
-56 silly addNameRange     '0.9.6-15',
-56 silly addNameRange     '0.9.6-16',
-56 silly addNameRange     '0.9.6-17',
-56 silly addNameRange     '0.9.6-18',
-56 silly addNameRange     '0.9.6-19',
-56 silly addNameRange     '0.9.6-20',
-56 silly addNameRange     '0.9.6-21',
-56 silly addNameRange     '0.9.6-22',
-56 silly addNameRange     '0.9.6-23',
-56 silly addNameRange     '0.9.7',
-56 silly addNameRange     '0.9.7-0',
-56 silly addNameRange     '0.9.7-1',
-56 silly addNameRange     '0.9.7-1.1',
-56 silly addNameRange     '0.9.7-1.2',
-56 silly addNameRange     '0.9.7-1.3',
-56 silly addNameRange     '0.9.7-1.4',
-56 silly addNameRange     '0.9.7-2',
-56 silly addNameRange     '0.9.7-2-1',
-56 silly addNameRange     '0.9.7-2-2',
-56 silly addNameRange     '0.9.7-2-3',
-56 silly addNameRange     '0.9.7-2-4',
-56 silly addNameRange     '0.9.7-2-5',
-56 silly addNameRange     '0.9.7-3',
-56 silly addNameRange     '0.9.7-3-1',
-56 silly addNameRange     '0.9.7-3-2',
-56 silly addNameRange     '0.9.7-3-3',
-56 silly addNameRange     '0.9.7-3-4',
-56 silly addNameRange     '0.9.7-3-5',
-56 silly addNameRange     '0.9.8',
-56 silly addNameRange     '0.9.8-1',
-56 silly addNameRange     '0.9.8-2',
-56 silly addNameRange     '0.9.8-3',
-56 silly addNameRange     '0.9.8-4',
-56 silly addNameRange     '0.9.8-5',
-56 silly addNameRange     '0.9.8-6',
-56 silly addNameRange     '0.9.8-7',
-56 silly addNameRange     '0.9.9',
-56 silly addNameRange     '0.9.9-1',
-56 silly addNameRange     '0.9.9-2',
-56 silly addNameRange     '0.9.9-3',
-56 silly addNameRange     '0.9.9-4',
-56 silly addNameRange     '0.9.9-5',
-56 silly addNameRange     '0.9.9-6',
-56 silly addNameRange     '0.9.9-7',
-56 silly addNameRange     '0.9.9-8',
-56 silly addNameRange     '1.0.0',
-56 silly addNameRange     '1.0.1',
-56 silly addNameRange     '1.0.2',
-56 silly addNameRange     '1.1.0-beta',
-56 silly addNameRange     '1.1.0',
-56 silly addNameRange     '1.1.1',
-56 silly addNameRange     '1.1.2',
-56 silly addNameRange     '1.1.3',
-56 silly addNameRange     '1.1.4',
-56 silly addNameRange     '1.1.5',
-56 silly addNameRange     '1.1.6',
-56 silly addNameRange     '1.1.7',
-56 silly addNameRange     '1.1.8',
-56 silly addNameRange     '1.1.9',
-56 silly addNameRange     '1.1.10',
-56 silly addNameRange     '1.1.11',
-56 silly addNameRange     '1.2.0',
-56 silly addNameRange     '1.2.1',
-56 silly addNameRange     '1.2.2',
-56 silly addNameRange     '1.2.3',
-56 silly addNameRange     '1.2.4',
-56 silly addNameRange     '1.2.5',
-56 silly addNameRange     '1.2.6',
-56 silly addNameRange     '1.2.7',
-56 silly addNameRange     '1.2.8',
-56 silly addNameRange     '1.2.9',
-56 silly addNameRange     '1.2.10',
-56 silly addNameRange     '1.2.11',
-56 silly addNameRange     '1.2.12',
-56 silly addNameRange     '1.2.13',
-56 silly addNameRange     '1.2.14',
-56 silly addNameRange     '1.3.0',
-56 silly addNameRange     '1.3.1',
-56 silly addNameRange     '1.3.2',
-56 silly addNameRange     '1.3.3',
-56 silly addNameRange     '1.3.4',
-56 silly addNameRange     '1.3.5',
-56 silly addNameRange     '1.3.6',
-56 silly addNameRange     '1.3.7',
-56 silly addNameRange     '1.3.8',
-56 silly addNameRange     '1.3.9',
-56 silly addNameRange     '1.3.10',
-56 silly addNameRange     '1.3.11',
-56 silly addNameRange     '1.3.12',
-56 silly addNameRange     '1.3.14',
-56 silly addNameRange     '1.3.15',
-56 silly addNameRange     '1.3.17',
-56 silly addNameRange     '1.3.18',
-56 silly addNameRange     '1.3.19',
-56 silly addNameRange     '1.4.0-rc2',
-56 silly addNameRange     '1.3.20',
-56 silly addNameRange     '1.4.0-rc3',
-56 silly addNameRange     '1.3.21',
-56 silly addNameRange     '1.3.22',
-56 silly addNameRange     '1.3.23',
-56 silly addNameRange     '1.4.0-rc4',
-56 silly addNameRange     '1.4.0-rc5',
-56 silly addNameRange     '1.4.0-rc6',
-56 silly addNameRange     '1.4.0-rc7',
-56 silly addNameRange     '1.4.0-rc8',
-56 silly addNameRange     '1.4.0-rc9',
-56 silly addNameRange     '1.4.0-rc10',
-56 silly addNameRange     '1.4.0',
-56 silly addNameRange     '1.4.1',
-56 silly addNameRange     '1.4.2',
-56 silly addNameRange     '1.4.3',
-56 silly addNameRange     '1.4.4',
-56 silly addNameRange     '1.4.5',
-56 silly addNameRange     '1.4.6',
-56 silly addNameRange     '1.4.7',
-56 silly addNameRange     '1.4.8',
-56 silly addNameRange     '1.4.9',
-56 silly addNameRange     '1.4.10',
-56 silly addNameRange     '2.0.0-alpha1',
-56 silly addNameRange     '1.4.11',
-56 silly addNameRange     '1.4.12',
-56 silly addNameRange     '1.4.14',
-56 silly addNameRange     '1.4.15',
-56 silly addNameRange     '1.4.16',
-56 silly addNameRange     '1.4.17',
-56 silly addNameRange     '2.0.0-alpha2',
-56 silly addNameRange     '1.4.18',
-56 silly addNameRange     '2.0.0',
-56 silly addNameRange     '2.0.1',
-56 silly addNameRange     '2.0.2',
-56 silly addNameRange     '1.4.19' ] ]
-57 verbose addNamed [ 'mongodb', '1.4.19' ]
-58 verbose addNamed [ '1.4.19', '1.4.19' ]
-59 silly lockFile f2af46af-mongodb-1-4-19 mongodb@1.4.19
-60 verbose lock mongodb@1.4.19 /Users/phillipou/.npm/f2af46af-mongodb-1-4-19.lock
-61 silly lockFile 56fc26b9-s-org-mongodb-mongodb-1-4-19-tgz https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz
-62 verbose lock https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz /Users/phillipou/.npm/56fc26b9-s-org-mongodb-mongodb-1-4-19-tgz.lock
-63 verbose addRemoteTarball [ 'https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz',
-63 verbose addRemoteTarball   'dbb47f1899c205b00bfb746db0ed002408b0af71' ]
-64 info retry fetch attempt 1 at 18:05:20
-65 verbose fetch to= /var/folders/rh/r369514n50x96s6dfjryq2jw0000gn/T/npm-975-wAy1taQn/registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz
-66 http GET https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz
-67 http 200 https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz
-68 silly lockFile 56fc26b9-s-org-mongodb-mongodb-1-4-19-tgz https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz
-69 silly lockFile 56fc26b9-s-org-mongodb-mongodb-1-4-19-tgz https://registry.npmjs.org/mongodb/-/mongodb-1.4.19.tgz
-70 silly lockFile f2af46af-mongodb-1-4-19 mongodb@1.4.19
-71 silly lockFile f2af46af-mongodb-1-4-19 mongodb@1.4.19
-72 silly lockFile 886df635-mongodb mongodb@
-73 silly lockFile 886df635-mongodb mongodb@
-74 error 404 404 Not Found: save--
-74 error 404
-74 error 404 'save--' is not in the npm registry.
-74 error 404 You should bug the author to publish it
-74 error 404 It was specified as a dependency of 'Stitch'
-74 error 404
-74 error 404 Note that you can also install from a
-74 error 404 tarball, folder, or http url, or git url.
-75 error System Darwin 13.3.0
-76 error command "node" "/usr/local/bin/npm" "install" "mongodb" "save--"
-77 error cwd /Users/phillipou/Desktop/Stitch-Backend
-78 error node -v v0.10.32
-79 error npm -v 1.4.28
-80 error code E404
-81 verbose exit [ 1, true ]
+8 verbose parsed url   pathname: 'bodyParser',
+8 verbose parsed url   path: 'bodyParser',
+8 verbose parsed url   href: 'bodyParser' }
+9 silly lockFile caa4c3c7-bodyParser bodyParser
+10 verbose lock bodyParser /Users/phillipou/.npm/caa4c3c7-bodyParser.lock
+11 silly lockFile caa4c3c7-bodyParser bodyParser
+12 silly lockFile caa4c3c7-bodyParser bodyParser
+13 verbose addNamed [ 'bodyParser', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile e0b6bd45-bodyParser bodyParser@
+16 verbose lock bodyParser@ /Users/phillipou/.npm/e0b6bd45-bodyParser.lock
+17 silly addNameRange { name: 'bodyParser', range: '*', hasData: false }
+18 verbose request where is /bodyParser
+19 verbose request registry https://registry.npmjs.org/
+20 verbose request id 4e38f49632871e67
+21 verbose url raw /bodyParser
+22 verbose url resolving [ 'https://registry.npmjs.org/', './bodyParser' ]
+23 verbose url resolved https://registry.npmjs.org/bodyParser
+24 verbose request where is https://registry.npmjs.org/bodyParser
+25 info trying registry request attempt 1 at 18:11:57
+26 http GET https://registry.npmjs.org/bodyParser
+27 http 404 https://registry.npmjs.org/bodyParser
+28 verbose headers { date: 'Mon, 13 Oct 2014 01:11:57 GMT',
+28 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 verbose headers   'content-type': 'application/json',
+28 verbose headers   'cache-control': 'max-age=0',
+28 verbose headers   'content-length': '52',
+28 verbose headers   'accept-ranges': 'bytes',
+28 verbose headers   via: '1.1 varnish',
+28 verbose headers   age: '0',
+28 verbose headers   'x-served-by': 'cache-sjc3126-SJC',
+28 verbose headers   'x-cache': 'MISS',
+28 verbose headers   'x-cache-hits': '0',
+28 verbose headers   'x-timer': 'S1413162717.653716,VS0,VE84',
+28 verbose headers   'keep-alive': 'timeout=10, max=50',
+28 verbose headers   connection: 'Keep-Alive' }
+29 silly registry.get cb [ 404,
+29 silly registry.get   { date: 'Mon, 13 Oct 2014 01:11:57 GMT',
+29 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+29 silly registry.get     'content-type': 'application/json',
+29 silly registry.get     'cache-control': 'max-age=0',
+29 silly registry.get     'content-length': '52',
+29 silly registry.get     'accept-ranges': 'bytes',
+29 silly registry.get     via: '1.1 varnish',
+29 silly registry.get     age: '0',
+29 silly registry.get     'x-served-by': 'cache-sjc3126-SJC',
+29 silly registry.get     'x-cache': 'MISS',
+29 silly registry.get     'x-cache-hits': '0',
+29 silly registry.get     'x-timer': 'S1413162717.653716,VS0,VE84',
+29 silly registry.get     'keep-alive': 'timeout=10, max=50',
+29 silly registry.get     connection: 'Keep-Alive' } ]
+30 silly lockFile e0b6bd45-bodyParser bodyParser@
+31 silly lockFile e0b6bd45-bodyParser bodyParser@
+32 error 404 404 Not Found: bodyParser
+32 error 404
+32 error 404 'bodyParser' is not in the npm registry.
+32 error 404 You should bug the author to publish it
+32 error 404 It was specified as a dependency of 'Stitch'
+32 error 404
+32 error 404 Note that you can also install from a
+32 error 404 tarball, folder, or http url, or git url.
+33 error System Darwin 13.3.0
+34 error command "node" "/usr/local/bin/npm" "install" "bodyParser" "--save"
+35 error cwd /Users/phillipou/Desktop/Stitch-Backend
+36 error node -v v0.10.32
+37 error npm -v 1.4.28
+38 error code E404
+39 verbose exit [ 1, true ]

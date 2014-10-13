@@ -3,6 +3,7 @@ var express = require("express");
 var logfmt = require("logfmt");
 var mongo = require('mongodb');
 var mongoskin = require('mongoskin');
+var bodyParser = require('body-parser');
 var app = express();
 
 
