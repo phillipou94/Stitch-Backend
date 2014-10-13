@@ -10,6 +10,12 @@ var app = express();
 var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mdb'
 var db = mongoskin.db(mongoURL, {safe:true})
 
+
+app.param('collectionName' function(req,res,next,collectionName){
+	req.collection = db.collection(collectionName)
+	return next()
+})
+
 app.use(logfmt.requestLogger());
 
 app.get('/', function(req, res) {
