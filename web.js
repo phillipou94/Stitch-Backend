@@ -9,6 +9,9 @@ var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb:
 var db = mongoskin.db(mongoURL, {safe:true})
 
 app.use(bodyParser())
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 app.param('collectionName', function(req,res,next,collectionName){
 	req.collection = db.collection(collectionName)
