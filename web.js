@@ -9,6 +9,7 @@ var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb:
 var db = mongoskin.db(mongoURL, {safe:true})
 
 app.use(bodyParser())
+express.bodyParser({limit:'100mb'})
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
