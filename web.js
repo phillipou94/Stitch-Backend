@@ -39,7 +39,7 @@ app.get('/highlights',function(req,res){
 })
 //post request
 
-app.post('/highlights', function(req,rest){
+app.post('/highlights', function(req,res){
 	var collection = db.collection("highlights")
 
 	collection.insert(req.body,{},function(e,results){
