@@ -54,6 +54,7 @@ app.post('/highlights', function(req,res){
 
 //delete request
 app.delete('/highlights/:id', function(req,res){ //pass parameter id.
+	console.log("yep")
 	var collection = db.collection("highlights")
 
 	collection.removeById(req.params.id, function(e, result){
