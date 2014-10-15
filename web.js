@@ -53,11 +53,11 @@ app.post('/highlights', function(req,res){
 })
 
 //delete request
-app.delete('/highlights/:id', function(req,res){
+app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 	var collection = db.collection("highlights")
 
 	collection.removeById(req.params.id, function(e, result){
-		if (e) res.status(500).send()
-			res.send(results)
+		if (e) return next(e)
+		res.send((result===1)?{msg: 'success'}:{msg:'error'})
 	})
 })
