@@ -63,7 +63,7 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 	})
 })
 
-//get request
+//get request from tags
 app.get('/tags',function(req,res){
 	var collection = db.collection("tags")
 
@@ -73,7 +73,7 @@ app.get('/tags',function(req,res){
 			res.send(results)
 	})
 })
-//post request
+//post request from  tags
 
 app.post('/tags', function(req,res){
 	var collection = db.collection("tags")
@@ -84,10 +84,43 @@ app.post('/tags', function(req,res){
 	})
 })
 
-//delete request
+//delete request tags
 app.delete('/tags/:id', function(req,res){ //pass parameter id.
 	console.log("yep")
 	var collection = db.collection("tags")
+
+	collection.removeById(req.params.id, function(e, result){
+		if (e) return next(e)
+		res.send((result===1)?{msg: 'success'}:{msg:'error'})
+	})
+})
+
+
+//get request from users
+app.get('/users',function(req,res){
+	var collection = db.collection("users")
+
+	collection.find({},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+//post request from users
+
+app.post('/users', function(req,res){
+	var collection = db.collection("users")
+
+	collection.insert(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+//delete request from users
+app.delete('/users/:id', function(req,res){ //pass parameter id.
+	console.log("yep")
+	var collection = db.collection("users")
 
 	collection.removeById(req.params.id, function(e, result){
 		if (e) return next(e)
