@@ -65,7 +65,7 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 
 //get request
 app.get('/tags',function(req,res){
-	var collection = db.collection("highlights")
+	var collection = db.collection("tags")
 
 	collection.find({},{}).toArray(function(e,results){
 		console.log(e);
@@ -76,7 +76,7 @@ app.get('/tags',function(req,res){
 //post request
 
 app.post('/tags', function(req,res){
-	var collection = db.collection("highlights")
+	var collection = db.collection("tags")
 
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
@@ -87,7 +87,7 @@ app.post('/tags', function(req,res){
 //delete request
 app.delete('/tags/:id', function(req,res){ //pass parameter id.
 	console.log("yep")
-	var collection = db.collection("highlights")
+	var collection = db.collection("tags")
 
 	collection.removeById(req.params.id, function(e, result){
 		if (e) return next(e)
