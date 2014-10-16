@@ -31,7 +31,7 @@ app.listen(port, function() {
   console.log("Listening on " + port);
 });
 
-//get request
+//get request for highlights
 app.get('/highlights',function(req,res){
 	var collection = db.collection("highlights")
 
@@ -41,7 +41,7 @@ app.get('/highlights',function(req,res){
 			res.send(results)
 	})
 })
-//post request
+//post request for highlights
 
 app.post('/highlights', function(req,res){
 	var collection = db.collection("highlights")
@@ -52,8 +52,40 @@ app.post('/highlights', function(req,res){
 	})
 })
 
-//delete request
+//delete request for highlights
 app.delete('/highlights/:id', function(req,res){ //pass parameter id.
+	console.log("yep")
+	var collection = db.collection("highlights")
+
+	collection.removeById(req.params.id, function(e, result){
+		if (e) return next(e)
+		res.send((result===1)?{msg: 'success'}:{msg:'error'})
+	})
+})
+
+//get request
+app.get('/tags',function(req,res){
+	var collection = db.collection("highlights")
+
+	collection.find({},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+//post request
+
+app.post('/tags', function(req,res){
+	var collection = db.collection("highlights")
+
+	collection.insert(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+//delete request
+app.delete('/tags/:id', function(req,res){ //pass parameter id.
 	console.log("yep")
 	var collection = db.collection("highlights")
 
