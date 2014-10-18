@@ -127,3 +127,23 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
 		res.send((result===1)?{msg: 'success'}:{msg:'error'})
 	})
 })
+
+
+app.put('/users/:id/', function(req, res, next) {
+
+  var collection = db.collection('users')
+
+  var str1 = "followingDictionary"; //key
+  //var str2 = req.params.array;
+  //var variable = str1.concat(str2);
+  
+ var action = {};
+
+ action[str1] = req.body;
+  collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+    action
+  }, {safe: true, multi: false}, function(e, result){
+    if (e) res.status(500).send()
+    
+  })
+})
