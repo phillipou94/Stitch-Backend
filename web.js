@@ -21,6 +21,21 @@ app.param('collectionName', function(req,res,next,collectionName){
 
 app.use(logfmt.requestLogger());
 
+// new 
+app.use('/', express.bodyParser({
+  keepExtensions: true,
+  limit: 1024 * 1024 * 10,
+  defer: true              
+}));
+app.use('/highlights', express.bodyParser({
+  keepExtensions: true,
+  limit: 1024 * 1024 * 1024 * 500,
+  defer: true              
+}));
+
+//
+
+
 app.get('/', function(req, res) {
   res.send('Hello World!');
 
