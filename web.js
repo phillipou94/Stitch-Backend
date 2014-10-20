@@ -152,7 +152,7 @@ app.put('/users/:id/followers', function(req, res, next) {
 
   var collection = db.collection('users')
 
-  var str1 = "followingDictionary"; //key
+  var str1 = "followersDictionary"; //key
   //var str2 = req.params.array;
   //var variable = str1.concat(str2);
   
