@@ -148,14 +148,14 @@ app.put('/users/:id/following', function(req, res, next) {
 
 app.put('/users/:id/followers', function(req, res, next) {
 
-  var collection = db.collection('users')
+ var collection = db.collection('users')
 
-  var str1 = "followersDictionary"; //key
+ var str1 = "followersDictionary"; //key
  var action = {};
  console.log(req.body)
  action[str1] = req.body;
   collection.updateById(req.params.id, {$set: //inc for integers, set for strings
-    {followingDictionary:req.body}
+    {followersDictionary:req.body}
   }, {safe: true, multi: false}, function(e, result){
     if (e) res.status(500).send()
     res.send(req.body)
