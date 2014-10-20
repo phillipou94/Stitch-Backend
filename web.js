@@ -129,21 +129,29 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
 })
 
 
-app.put('/users/:id', function(req, res, next) {
+app.put('/users/:id/:id2', function(req,req2, res, next) {
 
   var collection = db.collection('users')
 
   var str1 = "followingDictionary"; //key
-  //var str2 = req.params.array;
+  var str2 = "followersDictionary";
   //var variable = str1.concat(str2);
   
  var action = {};
- console.log(req.body)
+ var action2 = {};
+ console.log(req2.body)
  action[str1] = req.body;
+ action2[str2]= req2.body;
   collection.updateById(req.params.id, {$set: //inc for integers, set for strings
     {followingDictionary:req.body}
   }, {safe: true, multi: false}, function(e, result){
     if (e) res.status(500).send()
     res.send(req.body)
+  })
+  collection.updateById(req.params.id2, {$set: //inc for integers, set for strings
+    {followersDictionary:req2.body}
+  }, {safe: true, multi: false}, function(e, result){
+    if (e) res.status(500).send()
+    res.send(req2.body)
   })
 })
