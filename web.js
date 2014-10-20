@@ -143,6 +143,6 @@ app.put('/users/:id', function(req, res, next) {
     {followingDictionary:req.body}
   }, {safe: true, multi: false}, function(e, result){
     if (e) res.status(500).send()
-    
+    res.send("gucci")
   })
 })
