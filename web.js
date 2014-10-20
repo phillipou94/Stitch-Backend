@@ -129,6 +129,25 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
 })
 
 
+app.put('/users/:id/following', function(req, res, next) {
+
+  var collection = db.collection('users')
+
+  var str1 = "followingDictionary"; //key
+  //var str2 = req.params.array;
+  //var variable = str1.concat(str2);
+  
+ var action = {};
+ console.log(req.body)
+ action[str1] = req.body;
+  collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+    {followingDictionary:req.body}
+  }, {safe: true, multi: false}, function(e, result){
+    if (e) res.status(500).send()
+    res.send(req.body)
+  })
+})
+
 app.put('/users/:id/followers', function(req, res, next) {
 
   var collection = db.collection('users')
