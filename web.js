@@ -109,7 +109,8 @@ app.get('/users',function(req,res){
 
 app.post('/users', function(req,res){
 	var collection = db.collection("users")
-
+	console.log("Put Request")
+	console.log(req.body)
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
 			res.send(results)
