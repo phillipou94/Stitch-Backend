@@ -20,7 +20,6 @@ app.param('collectionName', function(req,res,next,collectionName){
 
 app.use(logfmt.requestLogger());
 
-
 app.get('/', function(req, res) {
   res.send('Hello World!');
 
@@ -129,7 +128,7 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
 })
 
 
-/*app.put('/users/:id', function(req, res, next) {
+app.put('/users/:id', function(req, res, next) {
 
   var collection = db.collection('users')
 
@@ -147,4 +146,3 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
     
   })
 })
-*/
