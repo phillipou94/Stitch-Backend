@@ -137,12 +137,12 @@ app.put('/users/:id', function(req, res, next) {
   //var variable = str1.concat(str2);
   
  var action = {};
-
+ console.log(req.body)
  action[str1] = req.body;
   collection.updateById(req.params.id, {$set: //inc for integers, set for strings
     {followingDictionary:[{key:"ja", value:"value"}]}
   }, {safe: true, multi: false}, function(e, result){
     if (e) res.status(500).send()
-    res.send("gucci")
+    res.send(req.body)
   })
 })
