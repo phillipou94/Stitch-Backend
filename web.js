@@ -119,8 +119,8 @@ app.post('/users', function(req,res){
 
 app.post('/:id', function(req,res){
 	var collection = db.collection(req.params.id)
-	console.log("Put Request")
-	console.log(req.body)
+	console.log("Put Request!!!")
+	console.log(req.params.id)
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
 			res.send(results)
