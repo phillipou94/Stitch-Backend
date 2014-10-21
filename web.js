@@ -95,7 +95,7 @@ app.delete('/tags/:id', function(req,res){ //pass parameter id.
 })
 
 
-//get request from users
+//get request for all users
 app.get('/users',function(req,res){
 	var collection = db.collection("users")
 
@@ -105,6 +105,16 @@ app.get('/users',function(req,res){
 			res.send(results)
 	})
 })
+
+app.get('/users/:id',function(req,res){
+	var collection = db.collection("users")
+	collection.find({},{"userID":req.params.id}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+
 
 //post request from users
 app.post('/users', function(req,res){
@@ -142,7 +152,6 @@ app.get('/:id',function(req,res){
 app.delete('/users/:id', function(req,res){ //pass parameter id.
 	console.log("yep")
 	var collection = db.collection("users")
-
 	collection.removeById(req.params.id, function(e, result){
 		if (e) return next(e)
 		res.send((result===1)?{msg: 'success'}:{msg:'error'})
