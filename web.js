@@ -127,6 +127,17 @@ app.post('/:id', function(req,res){
 	})
 })
 
+//get request from users
+app.get('/:id',function(req,res){
+	var collection = db.collection(req.params.id)
+
+	collection.find({},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+
 //delete request from users
 app.delete('/users/:id', function(req,res){ //pass parameter id.
 	console.log("yep")
