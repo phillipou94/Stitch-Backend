@@ -8,8 +8,6 @@ var app = express();
 var mongoURL = process.env.MONGOLABL_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mdb' //needed to add MONGOHQ to Heroku
 var db = mongoskin.db(mongoURL, {safe:true})
 
-//app.use(bodyParser())
-//express.bodyParser({limit:'100mb'})
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
@@ -31,10 +29,10 @@ app.listen(port, function() {
 });
 
 //get request for highlights
-app.get('/highlights',function(req,res){
+app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
 
-	collection.find({},{}).toArray(function(e,results){
+	collection.find({"userID": { $in: [req.params.id ] }},{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
