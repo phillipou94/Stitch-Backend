@@ -108,7 +108,7 @@ app.get('/users',function(req,res){
 
 app.get('/users/:id',function(req,res){
 	var collection = db.collection("users")
-	collection.find({"userID": { $in: [req.params.id ] },{}).toArray(function(e,results){
+	collection.find({"userID": { $in: [req.params.id ] }},{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
