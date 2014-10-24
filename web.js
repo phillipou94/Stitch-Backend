@@ -32,7 +32,7 @@ app.listen(port, function() {
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
 	
-	collection.find({"userID": { $in: [req.params.id ] }},{"sort" : [['datefield', 'asc']]}).toArray(function(e,results){
+	collection.find({"userID": { $in: [req.params.id ] }},{"sort" : [['dateCreated', 'asc']]}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
