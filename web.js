@@ -113,6 +113,16 @@ app.get('/users/:id',function(req,res){
 	})
 })
 
+app.get('/users/:searchParam/search',function(req,res){
+	var collection = db.collection("users")
+	collection.find({"username": { $in: [req.params.searchParam ] }},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+
 
 //post request from users
 app.post('/users', function(req,res){
@@ -189,3 +199,25 @@ app.put('/users/:id/followers', function(req, res, next) {
     res.send(req.body)
   })
 })
+
+//post request for messages
+app.post('/messages', function(req,res){
+	var collection = db.collection("messages")
+	console.log("Post Request")
+	console.log(req.body)
+	collection.insert(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+app.get('/messages/:id',function(req,res){
+	var collection = db.collection("messages")
+	collection.find({"forUser": { $in: [req.params.id ] }},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+
