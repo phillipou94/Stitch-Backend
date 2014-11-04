@@ -226,10 +226,10 @@ app.put('/messages/:id/update', function(req, res, next) {
 	var collection = db.collection('messages')
  	var str1 = "recipientIDs"; //key
  	var action = {};
- 	console.log(req.body)
+ 	console.log("Put Request")
  	action[str1] = req.body;
  	collection.updateById(req.params.id, {$set: //inc for integers, set for strings
-    	{followersDictionary:req.body}
+    	{recipientIDs:req.body}
   	}, {safe: true, multi: false}, function(e, result){
     	if (e) res.status(500).send()
     	res.send(req.body)
