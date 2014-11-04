@@ -213,7 +213,7 @@ app.post('/messages', function(req,res){
 
 app.get('/messages/:id',function(req,res){
 	var collection = db.collection("messages")
-	collection.find({"recipientID": { $in: [req.params.id ] }},{}).toArray(function(e,results){
+	collection.find({"recipientIDs": { $in: [req.params.id ] }},{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
