@@ -148,7 +148,6 @@ app.post('/:id', function(req,res){
 //get request from users
 app.get('/:id',function(req,res){
 	var collection = db.collection(req.params.id)
-
 	collection.find({},{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
@@ -214,7 +213,7 @@ app.post('/messages', function(req,res){
 //get messages for a specific user
 app.get('/messages/:id',function(req,res){
 	var collection = db.collection("messages")
-	collection.find({"recipientIDs": { $in: [req.params.id ] }},{}).toArray(function(e,results){
+	collection.find({"recipientIDs": { $in: [req.params.id ] }},{"sort" : [['dateCreated', 'asc']]}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
