@@ -235,3 +235,18 @@ app.put('/messages/:id/update', function(req, res, next) {
     	res.send(req.body)
   	})
 })
+
+//update recipientIDs when user is done reading
+app.put('/messages/:id/reader', function(req, res, next) {
+	var collection = db.collection('messages')
+ 	var str1 = "read"; //key
+ 	var action = {};
+ 	console.log("Put Request")
+ 	action[str1] = req.body;
+ 	collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+    	{recipientIDs:req.body}
+  	}, {safe: true, multi: false}, function(e, result){
+    	if (e) res.status(500).send()
+    	res.send(req.body)
+  	})
+})
