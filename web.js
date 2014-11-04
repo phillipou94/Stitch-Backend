@@ -211,6 +211,7 @@ app.post('/messages', function(req,res){
 	})
 })
 
+//get messages for a specific user
 app.get('/messages/:id',function(req,res){
 	var collection = db.collection("messages")
 	collection.find({"recipientIDs": { $in: [req.params.id ] }},{}).toArray(function(e,results){
@@ -220,4 +221,17 @@ app.get('/messages/:id',function(req,res){
 	})
 })
 
-
+//update recipientIDs when user is done reading
+app.put('/messages/:id/update', function(req, res, next) {
+	var collection = db.collection('messages')
+ 	var str1 = "recipientIDs"; //key
+ 	var action = {};
+ 	console.log(req.body)
+ 	action[str1] = req.body;
+ 	collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+    	{followersDictionary:req.body}
+  	}, {safe: true, multi: false}, function(e, result){
+    	if (e) res.status(500).send()
+    	res.send(req.body)
+  	})
+})
