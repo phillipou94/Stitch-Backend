@@ -54,9 +54,8 @@ app.post('/highlights/:serverID', function(req,res){
 	console.log('putting highlights')
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
-		app.put('/users', function(req, res, next) {
+	
 			console.log("Put Request")
-			console.log(req.params.serverID)
 			var userCollection = db.collection("users")
 			var key = "arrayOfHighlights"; //key
 			var array = [];
@@ -66,7 +65,6 @@ app.post('/highlights/:serverID', function(req,res){
     				if (e) res.status(500).send()
     				res.send(req.body)
   			})
-		})
 	})
 })
 
