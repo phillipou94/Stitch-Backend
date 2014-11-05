@@ -51,6 +51,7 @@ app.post('/highlights', function(req,res){
 
 app.post('/highlights/:serverID', function(req,res){
 	var collection = db.collection("highlights")
+	console.log('putting highlights')
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
 		app.put('/users', function(req, res, next) {
