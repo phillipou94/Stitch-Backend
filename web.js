@@ -31,15 +31,23 @@ app.listen(port, function() {
 //get request for highlights
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
-	
 	collection.find({"userID": { $in: [req.params.id ] }},{"sort" : [['dateCreated', 'asc']]}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 		res.send(results)
 	})
 })
-//post request for highlights
 
+//get specific request for highlights
+app.get('/highlights/:id/specific',function(req,res){
+	var collection = db.collection("highlights")
+	collection.findByID({"_id": {$in:[req.params.id]}},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+//post request for highlights
 app.post('/highlights', function(req,res){
 	var collection = db.collection("highlights")
 	collection.insert(req.body,{},function(e,results){
@@ -47,7 +55,6 @@ app.post('/highlights', function(req,res){
 		res.send(results)
 	})
 })
-
 
 app.post('/highlights/:serverID', function(req,res){
 	var collection = db.collection("highlights")
@@ -248,7 +255,7 @@ app.put('/messages/:id/update', function(req, res, next) {
   	})
 })
 
-//update recipientIDs when user is done reading
+//indicate user has read the message
 app.put('/messages/:id/reader', function(req, res, next) {
 	var collection = db.collection('messages')
  	var str1 = "read"; //key
