@@ -35,7 +35,7 @@ app.get('/highlights/:id',function(req,res){
 	collection.find({"userID": { $in: [req.params.id ] }},{"sort" : [['dateCreated', 'asc']]}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
-			res.send(results)
+		res.send(results)
 	})
 })
 //post request for highlights
@@ -44,7 +44,7 @@ app.post('/highlights', function(req,res){
 	var collection = db.collection("highlights")
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
-			res.send(results)
+		res.send(results)
 	})
 })
 
@@ -53,18 +53,19 @@ app.post('/highlights/:serverID', function(req,res){
 	var collection = db.collection("highlights")
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
-			res.send(results)
+		res.send(results)
 	})
-
-	var userCollection = db.collection("users")
-	var key = "arrayOfHighlights"; //key
-	var array = userCollection.bodyParser.arrayOfHighlights;
-	array.push(results[0]._id);
-	userCollection.updateById(req.params.serverID, {$set: //inc for integers, set for strings
-    	{arrayOfHighlights:array} }, {safe: true, multi: false}, function(e, result){
-    		if (e) res.status(500).send()
+	app.put('/users', function(req, res, next) {
+		var userCollection = db.collection("users")
+		var key = "arrayOfHighlights"; //key
+		var array = [];
+		array.push(results[0]._id);
+		userCollection.updateById(req.params.serverID, {$set: //inc for integers, set for strings
+    		{arrayOfHighlights:array} }, {safe: true, multi: false}, function(e, result){
+    			if (e) res.status(500).send()
     			res.send(req.body)
   		})
+	})
 })
 
 //delete request for highlights
