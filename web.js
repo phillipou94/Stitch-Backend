@@ -41,7 +41,8 @@ app.get('/highlights/:id',function(req,res){
 //get specific request for highlights
 app.get('/highlights/:id/specific',function(req,res){
 	var collection = db.collection("highlights")
-	collection.findByID({"_id": {$in:[req.params.id]}},{}).toArray(function(e,results){
+	console.log("using specific one")
+	collection.findById({"_id": {$in:[req.params.id]}},{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 		res.send(results)
