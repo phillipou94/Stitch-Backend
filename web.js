@@ -61,10 +61,9 @@ app.post('/highlights/:serverID', function(req,res){
 	var array = userCollection.bodyParser.arrayOfHighlights;
 	array.push(results[0]._id);
 	userCollection.updateById(req.params.serverID, {$set: //inc for integers, set for strings
-    	{arrayOfHighlights:[array]}
-  	}, {safe: true, multi: false}, function(e, result){
+    	{arrayOfHighlights:array} }, {safe: true, multi: false}, function(e, result){
     		if (e) res.status(500).send()
-    		res.send(req.body)
+    			res.send(req.body)
   		})
 })
 
