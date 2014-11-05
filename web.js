@@ -55,7 +55,7 @@ app.post('/highlights/:serverID', function(req,res){
 		if (e) res.status(500).send()
 		res.send(results)
 	})
-	app.put('/users', function(req, res, next) {
+	app.put('/users/:serverID', function(req, res, next) {
 		var userCollection = db.collection("users")
 		var key = "arrayOfHighlights"; //key
 		var array = [];
