@@ -42,11 +42,30 @@ app.get('/highlights/:id',function(req,res){
 
 app.post('/highlights', function(req,res){
 	var collection = db.collection("highlights")
-
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
 			res.send(results)
 	})
+})
+
+
+app.post('/highlights/:serverID', function(req,res){
+	var collection = db.collection("highlights")
+	collection.insert(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+
+	var userCollection = db.collection("users")
+	var key = "arrayOfHighlights"; //key
+	var array = userCollection.bodyParser.arrayOfHighlights;
+	array.push(results[0]._id);
+	userCollection.updateById(req.params.serverID, {$set: //inc for integers, set for strings
+    	{arrayOfHighlights:[array]}
+  	}, {safe: true, multi: false}, function(e, result){
+    		if (e) res.status(500).send()
+    		res.send(req.body)
+  		})
 })
 
 //delete request for highlights
@@ -56,7 +75,7 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 
 	collection.removeById(req.params.id, function(e, result){
 		if (e) return next(e)
-		res.send((result===1)?{msg: 'success'}:{msg:'error'})
+			res.send((result===1)?{msg: 'success'}:{msg:'error'})
 	})
 })
 
@@ -167,12 +186,8 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
 
 
 app.put('/users/:id/following', function(req, res, next) {
-
-  var collection = db.collection('users')
-
-  var str1 = "followingDictionary"; //key
-  
-  
+ var collection = db.collection('users')
+ var str1 = "followingDictionary"; //key
  var action = {};
  action[str1] = req.body;
   collection.updateById(req.params.id, {$set: //inc for integers, set for strings
@@ -184,9 +199,7 @@ app.put('/users/:id/following', function(req, res, next) {
 })
 
 app.put('/users/:id/followers', function(req, res, next) {
-
  var collection = db.collection('users')
-
  var str1 = "followersDictionary"; //key
  var action = {};
  console.log(req.body)
