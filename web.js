@@ -53,18 +53,17 @@ app.post('/highlights/:serverID', function(req,res){
 	var collection = db.collection("highlights")
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
-		res.send(results)
-	})
-	app.put('/users', function(req, res, next) {
+		app.put('/users', function(req, res, next) {
 		var userCollection = db.collection("users")
-		var key = "numberOfHighlights"; //key
+		var key = "arrayOfHighlights"; //key
 		var array = [];
 		array.push(results[0]._id);
 		userCollection.updateById(req.params.serverID, {$set: //inc for integers, set for strings
-    		{numberOfHighlights:"1"} }, {safe: true, multi: false}, function(e, result){
+    		{arrayOfHighlights:array} }, {safe: true, multi: false}, function(e, result){
     			if (e) res.status(500).send()
     			res.send(req.body)
-  		})
+  			})
+		})
 	})
 })
 
