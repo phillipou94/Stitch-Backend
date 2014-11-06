@@ -225,15 +225,6 @@ app.post('/favorites', function(req,res){
 	})
 })
 
-app.get('/favorites',function(req,res){
-	var collection = db.collection("favorites")
-	collection.find({},{}).sort({dateCreated:1}).toArray(function(e,results){
-		console.log(e);
-		if(e) res.status(500).send()
-			res.send(results)
-	})
-})
-
 app.get('/favorites/:id',function(req,res){
 	var collection = db.collection("favorites")
 	collection.find({"favoritedByID": req.params.id }, {"articleTitle":1, "quote":1, "favoritedByID":1}).sort({dateCreated:1}).toArray(function(e,results){
@@ -244,7 +235,7 @@ app.get('/favorites/:id',function(req,res){
 })
 
 app.get('/favorites/:id/selected',function(req,res){
-	var collection = db.collection("messages")
+	var collection = db.collection("favorites")
 	collection.find({"_id": new mongoskin.ObjectID(req.params.id)}, {}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
