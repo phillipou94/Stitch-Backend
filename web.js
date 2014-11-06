@@ -40,6 +40,7 @@ app.get('/highlights/:id',function(req,res){
 //when you select a highlight
 app.get('/highlights/:serverID/selected',function(req,res){
 	var collection = db.collection("highlights")
+	console.log("selected highlight")
 	collection.find({"_id": req.params.serverID }, {}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
