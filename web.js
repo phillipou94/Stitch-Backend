@@ -37,6 +37,15 @@ app.get('/highlights/:id',function(req,res){
 	})
 })
 
+//when you select a highlight
+app.get('/highlights/:serverID/selected',function(req,res){
+	var collection = db.collection("highlights")
+	collection.findOne({"_id": req.params.id }, {},function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
 //post request for highlights
 app.post('/highlights', function(req,res){
 	var collection = db.collection("highlights")
