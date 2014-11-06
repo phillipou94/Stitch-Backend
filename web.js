@@ -211,3 +211,34 @@ app.put('/messages/:id/reader', function(req, res, next) {
     	res.send(req.body)
   	})
 })
+
+
+//******* 						Favorites  							*******///
+
+//post request for messages
+app.post('/favorites', function(req,res){
+	var collection = db.collection("favorites")
+	console.log(req.body)
+	collection.insert(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+app.get('/favorites',function(req,res){
+	var collection = db.collection("favorites")
+	collection.find({},{}).sort({dateCreated:1}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+app.get('/favorites/:id',function(req,res){
+	var collection = db.collection("favorites")
+	collection.find({"favoritedByID": req.params.id }, {"quote":1, "senderName":1, "senderID":1, "read":1}).sort({dateCreated:1}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
