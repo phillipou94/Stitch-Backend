@@ -28,7 +28,7 @@ app.listen(port, function() {
   console.log("Listening on " + port);
 });
 
-//get request for highlights
+//get request for highlights. just return quote and articleTitle to speed up process
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
 	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1}).sort({dateCreated:1}).toArray(function(e,results){
@@ -37,7 +37,7 @@ app.get('/highlights/:id',function(req,res){
 	})
 })
 
-//when you select a highlight
+//when you select a highlight, load full highlight
 app.get('/highlights/:id/selected',function(req,res){
 	var collection = db.collection("highlights")
 	console.log("selected highlight")
@@ -53,25 +53,6 @@ app.post('/highlights', function(req,res){
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
 		res.send(results)
-	})
-})
-
-app.post('/highlights/:serverID', function(req,res){
-	var collection = db.collection("highlights")
-	console.log('putting highlights')
-	collection.insert(req.body,{},function(e,results){
-		if (e) res.status(500).send()
-	
-			console.log("Put Request")
-			var userCollection = db.collection("users")
-			var key = "arrayOfHighlights"; //key
-			var array = [];
-			array.push(results[0]._id);
-			userCollection.updateById(req.params.serverID, {$set: //inc for integers, set for strings
-    			{arrayOfHighlights:array} }, {safe: true, multi: false}, function(e, result){
-    				if (e) res.status(500).send()
-    				res.send(req.body)
-  			})
 	})
 })
 
@@ -96,8 +77,8 @@ app.get('/tags',function(req,res){
 			res.send(results)
 	})
 })
-//post request from  tags
 
+//post request from  tags
 app.post('/tags', function(req,res){
 	var collection = db.collection("tags")
 
@@ -233,10 +214,20 @@ app.post('/messages', function(req,res){
 //get messages for a specific user
 app.get('/messages/:id',function(req,res){
 	var collection = db.collection("messages")
-	collection.find({"recipientIDs": { $in: [req.params.id ] }},{"sort" : [['dateCreated', 'asc']]}).toArray(function(e,results){
+	collection.find({"recipientIDs": req.params.id }, {"quote":1, "senderName":1, "senderID":1}).sort({dateCreated:1}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
+	})
+})
+
+//when you select a message, load full highlight
+app.get('/messages/:id/selected',function(req,res){
+	var collection = db.collection("messages")
+	console.log("selected highlight")
+	collection.find({"_id": new mongoskin.ObjectID(req.params.id)}, {}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
 	})
 })
 
