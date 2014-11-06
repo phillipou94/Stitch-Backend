@@ -31,7 +31,7 @@ app.listen(port, function() {
 //get request for highlights
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
-	collection.find({"userID": req.params.id }, {}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
