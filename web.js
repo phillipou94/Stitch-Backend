@@ -214,7 +214,7 @@ app.post('/messages', function(req,res){
 //get messages for a specific user
 app.get('/messages/:id',function(req,res){
 	var collection = db.collection("messages")
-	collection.find({"recipientIDs": req.params.id }, {"quote":1, "senderName":1, "senderID":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"recipientIDs": req.params.id }, {"quote":1, "senderName":1, "senderID":1, "read":1}).sort({dateCreated:1}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
