@@ -28,6 +28,8 @@ app.listen(port, function() {
   console.log("Listening on " + port);
 });
 
+//******* 						Highlights 							*******///
+
 //get request for highlights. just return quote and articleTitle to speed up process
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
@@ -67,38 +69,7 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 	})
 })
 
-//get request from tags
-app.get('/tags',function(req,res){
-	var collection = db.collection("tags")
-
-	collection.find({},{}).toArray(function(e,results){
-		console.log(e);
-		if(e) res.status(500).send()
-			res.send(results)
-	})
-})
-
-//post request from  tags
-app.post('/tags', function(req,res){
-	var collection = db.collection("tags")
-
-	collection.insert(req.body,{},function(e,results){
-		if (e) res.status(500).send()
-			res.send(results)
-	})
-})
-
-//delete request tags
-app.delete('/tags/:id', function(req,res){ //pass parameter id.
-	console.log("yep")
-	var collection = db.collection("tags")
-
-	collection.removeById(req.params.id, function(e, result){
-		if (e) return next(e)
-		res.send((result===1)?{msg: 'success'}:{msg:'error'})
-	})
-})
-
+//******* 						Users							*******///
 
 //get request for all users
 app.get('/users',function(req,res){
@@ -141,27 +112,6 @@ app.post('/users', function(req,res){
 			res.send(results)
 	})
 })
-
-app.post('/:id', function(req,res){
-	var collection = db.collection(req.params.id)
-	console.log("Put Request!!!")
-	console.log(req.params.id)
-	collection.insert(req.body,{},function(e,results){
-		if (e) res.status(500).send()
-			res.send(results)
-	})
-})
-
-//get request from users
-app.get('/:id',function(req,res){
-	var collection = db.collection(req.params.id)
-	collection.find({},{}).toArray(function(e,results){
-		console.log(e);
-		if(e) res.status(500).send()
-			res.send(results)
-	})
-})
-
 //delete request from users
 app.delete('/users/:id', function(req,res){ //pass parameter id.
 	console.log("yep")
@@ -199,6 +149,7 @@ app.put('/users/:id/followers', function(req, res, next) {
     res.send(req.body)
   })
 })
+//******* 						Messages  							*******///
 
 //post request for messages
 app.post('/messages', function(req,res){
