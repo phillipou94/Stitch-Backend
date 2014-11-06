@@ -242,3 +242,11 @@ app.get('/favorites/:id',function(req,res){
 			res.send(results)
 	})
 })
+
+app.get('/favorites/:id/selected',function(req,res){
+	var collection = db.collection("messages")
+	collection.find({"_id": new mongoskin.ObjectID(req.params.id)}, {}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
