@@ -236,7 +236,7 @@ app.get('/favorites',function(req,res){
 
 app.get('/favorites/:id',function(req,res){
 	var collection = db.collection("favorites")
-	collection.find({"favoritedByID": req.params.id }, {"quote":1, "senderName":1, "senderID":1, "read":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"favoritedByID": req.params.id }, {"articleTitle":1, "quote":1, "favoritedByID":1}).sort({dateCreated:1}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
