@@ -105,7 +105,7 @@ app.get('/users/:id',function(req,res){
 
 app.get('/users/:searchParam/search',function(req,res){
 	var collection = db.collection("users")
-	collection.find({"username": req.params.searchParam }},{}).toArray(function(e,results){
+	collection.find({"username": req.params.searchParam },{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
