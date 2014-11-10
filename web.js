@@ -68,7 +68,7 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 			res.send((result===1)?{msg: 'success'}:{msg:'error'})
 	})
 })
-
+/*
 app.put('/highlights/:id/update', function(req, res, next) {
  var collection = db.collection('highlights')
  var str1 = "favorited"; //key
@@ -79,8 +79,7 @@ app.put('/highlights/:id/update', function(req, res, next) {
     res.send(req.body)
   })
 })
-
-
+*/
 
 //******* 						Users							*******///
 
