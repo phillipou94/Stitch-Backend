@@ -33,7 +33,7 @@ app.listen(port, function() {
 //get request for highlights. just return quote and articleTitle to speed up process
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
-	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1, "url":1, "favorited":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
@@ -241,7 +241,6 @@ app.put('/messages/:id/reader', function(req, res, next) {
 //post request for messages
 app.post('/favorites', function(req,res){
 	var collection = db.collection("favorites")
-	console.log(req.body)
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
 			res.send(results)
