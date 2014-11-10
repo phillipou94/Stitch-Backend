@@ -39,6 +39,15 @@ app.get('/highlights/:id',function(req,res){
 	})
 })
 
+app.get('/highlights',function(req,res){
+	var collection = db.collection("highlights")
+	collection.find({}, {}).sort({dateCreated:1}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
+
 //when you select a highlight, load full highlight
 app.get('/highlights/:id/selected',function(req,res){
 	var collection = db.collection("highlights")
