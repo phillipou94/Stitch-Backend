@@ -33,7 +33,7 @@ app.listen(port, function() {
 //get request for highlights. just return quote and articleTitle to speed up process
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
-	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1, "url":1, "favorited":1}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
@@ -69,6 +69,19 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 	})
 })
 
+app.put('/highlights/:id/update', function(req, res, next) {
+ var collection = db.collection('highlights')
+ var str1 = "favorited"; //key
+  collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+    {favorited:"YES"}
+  }, {safe: true, multi: false}, function(e, result){
+    if (e) res.status(500).send()
+    res.send(req.body)
+  })
+})
+
+
+
 //******* 						Users							*******///
 
 //get request for all users
@@ -93,12 +106,14 @@ app.get('/users/:id',function(req,res){
 
 app.get('/users/:searchParam/search',function(req,res){
 	var collection = db.collection("users")
-	collection.find({"username": { $in: [req.params.searchParam ] }},{}).toArray(function(e,results){
+	collection.find({"username":  $in: req.params.searchParam }},{}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
 	})
 })
+
+//{$text:req.params.searchParam }
 
 
 
