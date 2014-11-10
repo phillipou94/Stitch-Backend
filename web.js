@@ -72,9 +72,9 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 app.put('/highlights/:id/update', function(req, res, next) {
  var collection = db.collection('highlights')
  var str1 = "favorited"; //key
- var value = "YES"
+ console.log("please put");
   collection.updateById(req.params.id, {$set: //inc for integers, set for strings
-    {favorited:value}}, {safe: true, multi: false}, function(e, result){
+    {favorited:req.body}}, {safe: true, multi: false}, function(e, result){
     if (e) res.status(500).send()
     res.send(req.body)
   })
