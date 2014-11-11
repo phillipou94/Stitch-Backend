@@ -41,7 +41,7 @@ app.get('/highlights/:id',function(req,res){
 
 app.get('/highlights',function(req,res){
 	var collection = db.collection("highlights")
-	collection.find({}, {}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({}, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
@@ -78,12 +78,13 @@ app.delete('/highlights/:id', function(req,res){ //pass parameter id.
 	})
 })
 
+//when you click the favorite button
 app.put('/highlights/:id/update', function(req, res, next) {
  var collection = db.collection('highlights')
- var str1 = "favorited"; //key
+ var str1 = "favoritedByUsers"; //key
  console.log("please put");
   collection.updateById(req.params.id, {$set: //inc for integers, set for strings
-    {favorited:req.body}}, {safe: true, multi: false}, function(e, result){
+    {favoritedByUsers:req.body}}, {safe: true, multi: false}, function(e, result){
     if (e) res.status(500).send()
     res.send(req.body)
   })
