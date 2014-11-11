@@ -65,6 +65,7 @@ app.get('/highlights/:id/favorites',function(req,res){
 	//check to see if userID is a key in dictionary by seeing if it returns a value
 	//return everything not equal to null ($ne:null)
 	
+	query["favoritedByUsers"] = {}
 	query["favoritedByUsers"][req.params.id] = { $ne: null }
 	
 	console.log(query)
