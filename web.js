@@ -65,7 +65,7 @@ app.get('/highlights/:id/favorites',function(req,res){
 	//check to see if userID is a key in dictionary by seeing if it returns a value
 	//return everything not equal to null ($ne:null)
 	
-	query = {favoritedByUsers[req.params.id] : {$exists : true}}
+	query["favoritedByUsers"][req.params.id] = { $ne: null }
 	
 	console.log(query)
 	collection.find(query, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,}).sort({dateCreated:1}).toArray(function(e,results){
