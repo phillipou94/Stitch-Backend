@@ -49,7 +49,7 @@ app.get('/highlights',function(req,res){
 
 app.get('/highlights/random',function(req,res){
 	var collection = db.collection("highlights")
-	collection.findRandom({}, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).limit(1).toArray(function(e,results){
+	collection.find({}, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).limit(1).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
