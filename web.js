@@ -47,6 +47,14 @@ app.get('/highlights',function(req,res){
 	})
 })
 
+app.get('/highlights/random',function(req,res){
+	var collection = db.collection("highlights")
+	collection.findRandom({}, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).limit(1).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
 
 //when you select a highlight, load full highlight
 app.get('/highlights/:id/selected',function(req,res){
@@ -74,6 +82,8 @@ app.get('/highlights/:id/favorites',function(req,res){
 		res.send(results)
 	})
 })
+
+
 
 //post request for highlights
 app.post('/highlights', function(req,res){
@@ -265,7 +275,7 @@ app.post('/notifications', function(req,res){
 })
 
 //when you select a message, load full highlight
-app.get('/notifications/:id/selected',function(req,res){
+app.get('/notifications/:id',function(req,res){
 	var collection = db.collection("notifications")
 	console.log("selected highlight")
 	collection.find({"toUserID":req.params.id}, {}).toArray(function(e,results){
