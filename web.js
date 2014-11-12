@@ -118,6 +118,7 @@ app.put('/highlights/:id/update', function(req, res, next) {
 })
 
 
+
 //******* 						Users							*******///
 
 //get request for all users
@@ -283,6 +284,16 @@ app.get('/notifications/:id',function(req,res){
 		res.send(results)
 	})
 })
+
+app.get('/notifications',function(req,res){
+	var collection = db.collection("notifications")
+	console.log("selected highlight")
+	collection.find({}, {}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
 
 
 //******* 						Favorites  							*******///
