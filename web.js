@@ -253,11 +253,32 @@ app.put('/messages/:id/reader', function(req, res, next) {
   	})
 })
 
+//******* 						Notification 							*******///
+//post request for notifications
+app.post('/notifications', function(req,res){
+	var collection = db.collection("notifications")
+	console.log(req.body)
+	collection.insert(req.body,{},function(e,results){
+		if (e) res.status(500).send()
+			res.send(results)
+	})
+})
+
+//when you select a message, load full highlight
+app.get('/notifications/:id/selected',function(req,res){
+	var collection = db.collection("notifications")
+	console.log("selected highlight")
+	collection.find({"toUserID":req.params.id}, {}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
 
 //******* 						Favorites  							*******///
 
 //post request for messages
-app.post('/favorites', function(req,res){
+/*app.post('/favorites', function(req,res){
 	var collection = db.collection("favorites")
 	collection.insert(req.body,{},function(e,results){
 		if (e) res.status(500).send()
@@ -280,4 +301,4 @@ app.get('/favorites/:id/selected',function(req,res){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
-})
+})*/
