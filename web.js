@@ -275,7 +275,7 @@ app.post('/notifications', function(req,res){
 	})
 })
 
-//when you select a message, load full highlight
+
 app.get('/notifications/:id',function(req,res){
 	var collection = db.collection("notifications")
 	console.log("selected highlight")
