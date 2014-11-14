@@ -70,7 +70,7 @@ app.get('/highlights/:id/favorites',function(req,res){
 	query["favoritedByUsers." + req.params.id] = { $ne: null }
 	
 	console.log(query)
-	collection.find(query, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find(query, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,"category":1}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
