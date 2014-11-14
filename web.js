@@ -39,9 +39,10 @@ app.get('/highlights/:id',function(req,res){
 	})
 })
 
+//just return 20 of hte most recent
 app.get('/highlights',function(req,res){
 	var collection = db.collection("highlights")
-	collection.find({}, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1}).limit(20).toArray(function(e,results){
+	collection.find({}, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1, }).sort({dateCreated:1}).limit(20).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
@@ -271,7 +272,7 @@ app.post('/notifications', function(req,res){
 app.get('/notifications/:id',function(req,res){
 	var collection = db.collection("notifications")
 	console.log("selected highlight")
-	collection.find({"toUserID":req.params.id}, {}).toArray(function(e,results){
+	collection.find({"toUserID":req.params.id}, {}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
