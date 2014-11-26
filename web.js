@@ -33,7 +33,7 @@ app.listen(port, function() {
 //get request for highlights. just return quote and articleTitle to speed up process
 app.get('/highlights/:id',function(req,res){
 	var collection = db.collection("highlights")
-	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,"category":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"userID": req.params.id }, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,"category":1}).sort({dateCreated:-1}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
@@ -62,13 +62,13 @@ app.get('/highlights/:id/selected',function(req,res){
 //get request for favorites
 app.get('/highlights/:id/favorites',function(req,res){
 	var collection = db.collection("highlights")
-	
+
 	//check to see if userID is a key in dictionary by seeing if it returns a value
 	//return everything not equal to null ($ne:null)
-	
+
 	var query = {}
 	query["favoritedByUsers." + req.params.id] = { $ne: null }
-	
+
 	console.log(query)
 	collection.find(query, {"quote":1, "articleTitle":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,"category":1}).sort({dateCreated:1}).toArray(function(e,results){
 		if(e) res.status(500).send()
@@ -210,7 +210,7 @@ app.post('/messages', function(req,res){
 //get messages for a specific user
 app.get('/messages/:id',function(req,res){
 	var collection = db.collection("messages")
-	collection.find({"recipientIDs": req.params.id }, {"quote":1, "senderName":1, "senderID":1, "read":1}).sort({dateCreated:1}).toArray(function(e,results){
+	collection.find({"recipientIDs": req.params.id }, {"quote":1, "senderName":1, "senderID":1, "read":1}).sort({dateCreated:-1}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
 			res.send(results)
