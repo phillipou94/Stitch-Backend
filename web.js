@@ -287,6 +287,57 @@ app.get('/notifications',function(req,res){
 	})
 })
 
+//*****				ARTICLES			****//
+//post request for articles
+
+app.post('/articles', function(req,res) {
+	var collection = db.collection("articles");
+	console.log("CREATING NEW ARTICLE");
+	console.log(req.body);
+	collection.insert(req.body,{},function(e,results) {
+		if (e) {
+			console.log("here's your error")
+			console.log(e)
+			res.status(500).send()
+		} else{
+			res.send(results);
+		}
+	})
+
+});
+
+//find article by title
+app.get('/articles/:searchParam',function(req,res){
+	var collection = db.collection("articles")
+	console.log("retrieving article")
+	collection.find({"articleTitle":req.params.searchParam}, {}).sort({dateCreated:1}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
+//add highlighted quotes to article
+app.put('/articles/:id/update', function(req, res, next) {
+	var collection = db.collection('articles')
+ 	console.log("Article Put Request")
+ 	collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+    	{highlights:req.body}
+  	}, {safe: true, multi: false}, function(e, result){
+    	if (e) res.status(500).send()
+    	res.send(req.body)
+  	})
+})
+
+app.get('/articles/all',function(req,res){
+	var collection = db.collection("articles")
+	console.log("getting all articles")
+	collection.find({},{}).toArray(function(e,results){
+		console.log(e);
+		if(e) res.status(500).send()
+			res.send(results)
+	})
+})
+
 
 
 //******* 						Favorites  							*******///
