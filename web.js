@@ -317,10 +317,10 @@ app.get('/articles/:searchParam',function(req,res){
 })
 
 //get specific article id
-app.get('/articles/:id',function(req,res){
+app.get('/articles/:id/selected',function(req,res){
 	var collection = db.collection("articles")
-	console.log("retrieving article")
-	collection.findById(req.params.id).toArray(function(e,results){
+	console.log("selected article")
+	collection.find({"_id": new mongoskin.ObjectID(req.params.id)}, {}).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
