@@ -316,6 +316,16 @@ app.get('/articles/:searchParam',function(req,res){
 	})
 })
 
+//get specific article id
+app.get('/articles/:id',function(req,res){
+	var collection = db.collection("articles")
+	console.log("retrieving article")
+	collection.find({"_id": new mongoskin.ObjectID(req.params.id)}).toArray(function(e,results){
+		if(e) res.status(500).send()
+		res.send(results)
+	})
+})
+
 //add highlighted quotes to article
 app.put('/articles/:id/update', function(req, res, next) {
 	var collection = db.collection('articles')
