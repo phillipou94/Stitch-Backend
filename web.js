@@ -320,7 +320,7 @@ app.get('/articles/:searchParam',function(req,res){
 app.get('/articles/:id',function(req,res){
 	var collection = db.collection("articles")
 	console.log("retrieving article")
-	collection.find({_id: req.params.id}).toArray(function(e,results){
+	collection.findById(req.params.id).toArray(function(e,results){
 		if(e) res.status(500).send()
 		res.send(results)
 	})
