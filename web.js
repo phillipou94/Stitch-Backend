@@ -113,6 +113,7 @@ app.put('/highlights/:id/update', function(req, res, next) {
 /****************************
 NEW METHOD 
 ***************************/
+//get all highlights of your followers
 app.get('/followingHighlights/:id',function(req,res){
 	var users = db.collection("users")
 	console.log("selected highlight")
@@ -124,10 +125,10 @@ app.get('/followingHighlights/:id',function(req,res){
 		else {
 			var collection = db.collection("highlights");
 			var user = results[0];
-			var followingIDs = Object.keys(user["followingDictionary"]);
+			var followingIDs = Object.keys(user["followingDictionary"]); //get ids of all the people you'er following
 			console.log("here are the following ids");
 			console.log(followingIDs);
-
+			//if highlight's userID key gives you a value that's in followingIDs then we want that highlight
 			collection.find({"userID":{$in:followingIDs}},{"quote":1, "articleTitle":1, "dateCreated":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,"category":1 }).sort({dateCreated:1}).toArray(function(error,highlights) {
 				if (error){
 					res.status(500).send();
