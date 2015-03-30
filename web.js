@@ -116,7 +116,7 @@ NEW METHOD
 app.get('/followingHighlights/:id',function(req,res){
 	var users = db.collection("users")
 	console.log("selected highlight")
-	users.find({"_id": new mongoskin.ObjectID(req.params.id)}, {}).toArray(function(e,results){
+	users.find({"_id": new mongoskin.ObjectID(req.params.id)}, {"quote":1, "articleTitle":1, "dateCreated":1, "url":1, "username":1, "userID":1, "favoritedByUsers":1,"category":1 }).sort({dateCreated:1}).toArray(function(e,results){
 		if(e){
 			console.log("we have an error");
 			res.status(500).send();
@@ -127,14 +127,22 @@ app.get('/followingHighlights/:id',function(req,res){
 			var followingIDs = Object.keys(user["followingDictionary"]);
 			console.log("here are the following ids");
 			console.log(followingIDs);
-			
-			
-			res.send(results);
 
+			collection.find({"userID":{$in:followingIDs}},{}).toArray(function(error,highlights) {
+				if (error){
+					res.status(500).send();
+				}
+				else {
+					console.log("we found them!");
+					res.send(highlights);
+				}
+
+			});
+			
 		}
 		
-	})
-})
+	});
+});
 
 /****************************
 NEW METHOD 
