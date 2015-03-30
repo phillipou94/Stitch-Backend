@@ -124,6 +124,7 @@ app.get('/followingHighlights/:id',function(req,res){
 		else {
 			var collection = db.collection("highlights");
 			var user = results[0];
+			res.send(user);
 			var followingIDs = Object.keys(user["followingDictionary"]);
 			console.log("here are the following ids");
 			console.log(followingIDs);
