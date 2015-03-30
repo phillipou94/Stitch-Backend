@@ -110,6 +110,33 @@ app.put('/highlights/:id/update', function(req, res, next) {
   })
 })
 
+/****************************
+NEW METHOD 
+***************************/
+app.get('/followingHighlights/:id',function(req,res){
+	var users = db.collection("users")
+	console.log("selected highlight")
+	users.find({"_id": new mongoskin.ObjectID(req.params.id)}, {}).toArray(function(e,results){
+		if(e){
+			console.log("we have an error");
+			res.status(500).send();
+		} 
+		else {
+			var user = results[0];
+			console.log(user);
+			var collection = db.collection("highlights");
+			
+			res.send(results);
+
+		}
+		
+	})
+})
+
+/****************************
+NEW METHOD 
+***************************/
+
 
 
 //******* 						Users							*******///
@@ -213,7 +240,7 @@ app.get('/messages/:id',function(req,res){
 	collection.find({"recipientIDs": req.params.id }, {"quote":1, "senderName":1, "senderID":1, "read":1}).sort({dateCreated:-1}).toArray(function(e,results){
 		console.log(e);
 		if(e) res.status(500).send()
-			res.send(results)
+		res.send(results)
 	})
 })
 
