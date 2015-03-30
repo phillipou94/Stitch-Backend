@@ -122,9 +122,12 @@ app.get('/followingHighlights/:id',function(req,res){
 			res.status(500).send();
 		} 
 		else {
-			var user = results[0];
-			console.log(user);
 			var collection = db.collection("highlights");
+			var user = results[0];
+			var followingIDs = Object.keys(user["followingDictionary"]);
+			console.log("here are the following ids");
+			console.log(followingIDs);
+			
 			
 			res.send(results);
 
@@ -196,16 +199,16 @@ app.delete('/users/:id', function(req,res){ //pass parameter id.
 
 
 app.put('/users/:id/following', function(req, res, next) {
- var collection = db.collection('users')
- var str1 = "followingDictionary"; //key
- var action = {};
- action[str1] = req.body;
-  collection.updateById(req.params.id, {$set: //inc for integers, set for strings
-    {followingDictionary:req.body}
-  }, {safe: true, multi: false}, function(e, result){
-    if (e) res.status(500).send()
-    res.send(req.body)
-  })
+	var collection = db.collection('users')
+	var str1 = "followingDictionary"; //key
+	var action = {};
+	action[str1] = req.body;
+	collection.updateById(req.params.id, {$set: //inc for integers, set for strings
+	    {followingDictionary:req.body}
+	  }, {safe: true, multi: false}, function(e, result){
+	    if (e) res.status(500).send()
+	    res.send(req.body)
+	})
 })
 
 app.put('/users/:id/followers', function(req, res, next) {
